@@ -34,4 +34,17 @@ describe(tokenize, () => {
 
     expect(tokenize(input)).toEqual(result)
   })
+
+  it("should be able to handle single numbers in expressions", () => {
+    const input = "(1 2)"
+
+    const result = [
+      { type: "Parenthesis", value: "(" },
+      { type: "Number", value: 1 },
+      { type: "Number", value: 2 },
+      { type: "Parenthesis", value: ")" },
+    ]
+
+    expect(tokenize(input)).toEqual(result)
+  })
 })
