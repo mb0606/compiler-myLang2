@@ -15,4 +15,23 @@ describe(tokenize, () => {
 
     expect(tokenize(input)).toEqual(result)
   })
+  it("should ignore whitespaces", () => {
+    const input = "                  "
+    const result = []
+
+    expect(tokenize(input)).toEqual(result)
+  })
+  it("should correctly tokenize a single digit", () => {
+    const input = "2"
+    const result = [{ type: "Number", value: 2 }]
+
+    expect(tokenize(input)).toEqual(result)
+  })
+
+  it("should correctly tokenize a single letter", () => {
+    const input = "a"
+    const result = [{ type: "Name", value: "a" }]
+
+    expect(tokenize(input)).toEqual(result)
+  })
 })

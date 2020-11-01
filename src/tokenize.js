@@ -1,6 +1,6 @@
 const {
   isLetter,
-  isWhiteSpace,
+  isWhitespace,
   isNumber,
   isParenthesis,
   isQuote,
@@ -20,6 +20,28 @@ export const tokenize = (input) => {
       cursor++
       continue
     }
+    if (isWhitespace(character)) {
+      cursor++
+      continue
+    }
+    if (isNumber(character)) {
+      tokens.push({
+        type: "Number",
+        value: parseInt(character, 10),
+      })
+      cursor++
+      continue
+    }
+    if (isLetter(character)) {
+      tokens.push({
+        type: "Name",
+        value: character,
+      })
+      cursor++
+      continue
+    }
+
+    throw new Error(`${character} is not valid`)
   }
 
   return tokens
