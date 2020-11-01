@@ -35,16 +35,80 @@ describe(tokenize, () => {
     expect(tokenize(input)).toEqual(result)
   })
 
-  it("should be able to handle single numbers in expressions", () => {
-    const input = "(1 2)"
+  it("should be able to handle single digit in expressions", () => {
+    const input = "(3 4)"
 
     const result = [
       { type: "Parenthesis", value: "(" },
-      { type: "Number", value: 1 },
-      { type: "Number", value: 2 },
+      { type: "Number", value: 3 },
+      { type: "Number", value: 4 },
       { type: "Parenthesis", value: ")" },
     ]
 
+    expect(tokenize(input)).toEqual(result)
+  })
+
+  it("should be able to handle single letters in expressions", () => {
+    const input = "(a b)"
+
+    const result = [
+      { type: "Parenthesis", value: "(" },
+      { type: "Name", value: "a" },
+      { type: "Name", value: "b" },
+      { type: "Parenthesis", value: ")" },
+    ]
+
+    expect(tokenize(input)).toEqual(result)
+  })
+
+  it("should be able to handle multiple-digit numbers", () => {
+    const input = "(11 22)"
+
+    const result = [
+      { type: "Parenthesis", value: "(" },
+      { type: "Number", value: 11 },
+      { type: "Number", value: 22 },
+      { type: "Parenthesis", value: ")" },
+    ]
+
+    expect(tokenize(input)).toEqual(result)
+  })
+
+  it("should correctly tokenize a simple expression", () => {
+    const input = "(add 2 3)"
+    const result = [
+      { type: "Parenthesis", value: "(" },
+      { type: "Name", value: "add" },
+      { type: "Number", value: 2 },
+      { type: "Number", value: 3 },
+      { type: "Parenthesis", value: ")" },
+    ]
+
+    expect(tokenize(input)).toEqual(result)
+  })
+
+  it("should ignore whitespace", () => {
+    const input = "   (add    2 3)"
+    const result = [
+      { type: "Parenthesis", value: "(" },
+      { type: "Name", value: "add" },
+      { type: "Number", value: 2 },
+      { type: "Number", value: 3 },
+      { type: "Parenthesis", value: ")" },
+    ]
+
+    expect(tokenize(input)).toEqual(result)
+  })
+
+  it("should know about strings", () => {
+    const input = '(log "hello" "world")'
+    const result = [
+      { type: "Parenthesis", value: "(" },
+      { type: "Name", value: "log" },
+      { type: "String", value: "hello" },
+      { type: "String", value: "world" },
+      { type: "Parenthesis", value: ")" },
+    ]
     expect(tokenize(input)).toEqual(result)
   })
 })
