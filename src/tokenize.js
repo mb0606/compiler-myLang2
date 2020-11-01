@@ -4,7 +4,7 @@ const {
   isNumber,
   isParenthesis,
   isQuote,
-} = require("./indentify")
+} = require("./identify")
 
 export const tokenize = (input) => {
   const tokens = []

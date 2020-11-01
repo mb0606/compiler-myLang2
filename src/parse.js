@@ -1,7 +1,24 @@
 const { isOpeningParenthesis, isClosingParenthesis } = require("./identify")
+const { pop } = require("./util")
+const parenthesize = (tokens) => {
+  return tokens
+}
 
-const parenthesize = () => {}
+const parse = (tokens) => {
+  const token = pop(tokens)
 
-const parse = () => {}
+  if (token.type === "Number") {
+    return {
+      type: "NumericLiteral",
+      value: token.value,
+    }
+  }
+  if (token.type === "String") {
+    return { type: "StringLiteral", value: token.value }
+  }
+  if (token.type === "Name") {
+    return { type: "Identifier", name: token.value }
+  }
+}
 
 module.exports = { parse: (tokens) => parse(parenthesize(tokens)) }
