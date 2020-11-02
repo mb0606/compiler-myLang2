@@ -7,7 +7,6 @@ const apply = (node) => {
   if (typeof func !== "function") {
     throw new TypeError(`${node.name} is not a function`)
   }
-  console.log("node name: ", node.name, args)
   return func(...args)
 }
 
@@ -22,7 +21,7 @@ const evaluate = (node) => {
   if (node.type === "Identifier") {
     return getIdentifier(node)
   }
-  if (node.value === "Number") {
+  if (node.type === "NumericLiteral" || node.type === "StringLiteral") {
     return node.value
   }
 }

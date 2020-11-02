@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "bin": {
-    "mylang": "bin/mylang"
+    "mylang": "./bin/mylang.js"
   },
   "scripts": {
     "start": "node src/repl.js",

@@ -1,6 +1,4 @@
-const all = (fn) => (...list) => {
-  return list.reduce(fn)
-}
+const all = (fn) => (...list) => list.reduce(fn)
 
 const add = all((a, b) => a + b)
 const subtract = all((a, b) => a - b)

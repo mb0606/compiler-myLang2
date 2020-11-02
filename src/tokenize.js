@@ -5,8 +5,7 @@ const {
   isParenthesis,
   isQuote,
 } = require("./identify")
-
-export const tokenize = (input) => {
+const tokenize = (input) => {
   const tokens = []
   let cursor = 0
 
@@ -38,7 +37,6 @@ export const tokenize = (input) => {
     if (isLetter(character)) {
       let symbol = character
       while (isLetter(input[++cursor])) {
-        console.log(input)
         symbol += input[cursor]
       }
 
@@ -69,4 +67,8 @@ export const tokenize = (input) => {
   }
 
   return tokens
+}
+
+module.exports = {
+  tokenize,
 }

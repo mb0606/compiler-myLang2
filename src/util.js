@@ -14,4 +14,5 @@ module.exports = {
   peek,
   pop,
   tap,
+  pipe,
 }

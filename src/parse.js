@@ -8,7 +8,6 @@ const parenthesize = (tokens) => {
     const expression = []
 
     while (!isClosingParenthesis(peek(tokens).value)) {
-      console.log("this is tokens: ", tokens)
       expression.push(parenthesize(tokens))
     }
     pop(tokens)
