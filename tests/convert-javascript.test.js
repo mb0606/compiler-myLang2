@@ -21,4 +21,14 @@ describe(convertJavaScript, () => {
 
     expect(convertJavaScript(ast)).toBe("add(2, 3, subtract(5, 4))")
   })
+
+  it("should support vaiables", () => {
+    const ast = {
+      type: "VariableDeclaration",
+      identifier: { type: "Identifier", name: "x" },
+      assignment: { type: "NumericLiteral", value: 2 },
+    }
+    console.log(convertJavaScript(ast))
+    expect(convertJavaScript(ast)).toBe("let x = 2;")
+  })
 })

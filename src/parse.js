@@ -1,7 +1,6 @@
 const { isOpeningParenthesis, isClosingParenthesis } = require("./identify")
 const { pop, peek } = require("./util")
 const parenthesize = (tokens) => {
-  console.log("this a token: ", tokens)
   const token = pop(tokens)
 
   if (isOpeningParenthesis(token.value)) {
