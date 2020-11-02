@@ -50,4 +50,37 @@ describe(evaluate, () => {
 
     expect(result).toBe(6)
   })
+
+  it("should be able to lookup identifiers in the environment", () => {
+    const ast = { type: "Identifier", name: "pi" }
+    expect(evaluate(ast)).toBe(Math.PI)
+  })
+
+  it("should be able to highest number in a range", () => {
+    const ast = {
+      type: "CallExpression",
+      name: "max",
+      arguments: [
+        { type: "NumericLiteral", value: 2 },
+        { type: "NumericLiteral", value: 3 },
+        { type: "NumericLiteral", value: 10 },
+      ],
+    }
+
+    expect(evaluate(ast)).toBe(10)
+  })
+
+  it("should be able to lowest number in a range", () => {
+    const ast = {
+      type: "CallExpression",
+      name: "min",
+      arguments: [
+        { type: "NumericLiteral", value: 2 },
+        { type: "NumericLiteral", value: 3 },
+        { type: "NumericLiteral", value: 10 },
+      ],
+    }
+
+    expect(evaluate(ast)).toBe(2)
+  })
 })
